@@ -1,0 +1,6 @@
+mycontacts\utils\ValidadorEmail.class
+mycontacts\app\Main.class
+mycontacts\controller\Agenda.class
+mycontacts\exceptions\ContatoNaoEncontradoException.class
+mycontacts\model\Contato.class
+mycontacts\model\ContatoComercial.class

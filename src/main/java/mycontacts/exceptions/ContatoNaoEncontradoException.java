@@ -1,0 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package mycontacts.exceptions;
+
+/**
+ *
+ * @author aurem
+ */
+public class ContatoNaoEncontradoException extends Exception{
+    public ContatoNaoEncontradoException(String mensagem){
+        super(mensagem);
+    }
+}
