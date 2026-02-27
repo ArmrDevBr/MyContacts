@@ -10,7 +10,6 @@ import java.util.Iterator;
 import mycontacts.model.Contato;
 import mycontacts.model.ContatoComercial;
 import mycontacts.utils.ValidadorEmail;
-import mycontacts.exceptions.ContatoNaoEncontradoException;
 
 /**
  *
@@ -23,13 +22,6 @@ public class Agenda {
     Scanner optionInput = new Scanner(System.in);
 
     public Agenda() {
-        /*agendaList.add(
-                new Contato("Carlos Vaz", "(21) 91234-5678", "carlos@email.com"));
-        agendaList.add(
-                new Contato("Carlos Vaz Dias", "(21) 91234-5678", "carlos@email.com"));
-        agendaList.add(
-                new Contato("Beatriz Souza", "(31) 99999-0000", "bia@email.com"));
-        agendaList.add(new ContatoComercial("Souza Soul", "(31) 99999-0000", "soulsouza@email.com", "Armrdev"));*/
 
     }
 
@@ -91,48 +83,25 @@ public class Agenda {
 
     }
 
-    public void listarContatos() throws ContatoNaoEncontradoException {
-        try {
-            int index = 0;
-            if (!agendaList.isEmpty()) {
-
-                System.out.println("-----------------------------------");
-                /*Pecorre o array para imprimir os contatos*/
-                for (Contato contato : agendaList) {
-                    System.out.println("id:" + index + contato);
-
-                    index++;
-                }
-                switch (index) {
-                    case 0:
-                        System.out.println("-----------------------------------");
-                        System.out.println(" Nenhum contato encontrado!");
-                        System.out.println("-----------------------------------");
-                        break;
-                    case 1:
-
-                        System.out.println("-----------------------------------");
-                        System.out.println(index + " Contato encontrado!");
-                        System.out.println("-----------------------------------");
-                        break;
-                    default:
-                        System.out.println("-----------------------------------");
-                        System.out.println(index + " Contatos encontrados!");
-                        System.out.println("-----------------------------------");
-                }
-            } else {
-                throw new ContatoNaoEncontradoException("Nenhum contato encontrado!");
-            }
-        } catch (ContatoNaoEncontradoException e) {
-            System.out.println("Aviso: "+ e.getMessage());
-            System.out.println("Dica: Use \"Adicionar novo contato\" no menu principal para inserir contatos.");
+    public void listarContatos() {
+        if (agendaList.isEmpty()) {
+            System.out.println("Nenhum contato encontrado!");
+            System.out.println("Dica: Use \"Adicionar novo contato\" para inserir contatos.");
+            return;
         }
 
+        System.out.println("-----------------------------------");
+        for (int i = 0; i < agendaList.size(); i++) {
+            System.out.println("id:" + i + agendaList.get(i));
+        }
+
+        String mensagem = agendaList.size() == 1 ? "1 Contato encontrado!" : agendaList.size() + " Contatos encontrados!";
+        System.out.println(mensagem);
     }
 
     public void buscarPorNome() {
         int index = 0;
-        int encontrados = 0 ;
+        int encontrados = 0;
         String nomeBusca;
         while (true) {
             System.out.println("-----------------------------------");
@@ -148,9 +117,7 @@ public class Agenda {
                 System.out.println("-----------------------------------");
                 System.out.println("Digite um nome ou cancelar pra sair.");
             }
-            {
-
-            }
+            
         }
         for (Contato contato : agendaList) {
             if (contato.getNome().toLowerCase().contains(nomeBusca.toLowerCase())) {
